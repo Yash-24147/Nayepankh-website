@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NayePankh Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: 600;
+            position: relative;
+            transition: 0.3s
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0%;
+            height: 2px;
+            background: white;
+            transition: 0.3s
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5)
+        }
+
+        nav a:hover::after {
+            width: 100%
+        }
+
+        nav a.active {
+            color: #ffe600;
+            text-shadow: 0 0 10px rgba(255, 230, 0, 0.6)
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+            transition: 0.4s
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #0066ff;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px
+        }
+
+        nav a:hover {
+            text-decoration: none
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            animation: fadeDown 1s ease
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 15px 0
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            border: none;
+            margin: 5px;
+            border-radius: 5px
+        }
+
+        section {
+            padding: 70px 20px
+        }
+
+        .card {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px
+        }
+
+        .about-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+
+        .about-text {
+            flex: 1;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 17px
+        }
+
+        .about-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px
+        }
+
+        .about-images img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.5s
+        }
+
+        .about-images img:hover {
+            transform: scale(1.05)
+        }
+
+        .stats div {
+            background: white;
+            padding: 25px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+        }
+
+        .stats h2 {
+            font-size: 30px;
+            color: #0066ff
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.4s
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05)
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+            gap: 10px
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc
+        }
+
+        form button {
+            background: #0066ff;
+            color: white;
+            border: none;
+            padding: 12px
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px
+        }
+
+        .dark {
+            background: #121212;
+            color: white
+        }
+
+        .dark .stats div {
+            background: #1f1f1f;
+            color: white
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: 1s
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center
+            }
+
+            .hero h1 {
+                font-size: 35px
+            }
+        }
+
+        .work-grid,
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px
+        }
+
+        .work-card,
+        .future-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: 0.5s
+        }
+
+        .work-card:hover,
+        .future-card:hover {
+            transform: translateY(-8px)
+        }
+
+        .work-card img,
+        .future-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 10px
+        }
+
+        .dark header {
+            background: rgba(40, 40, 40, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+        }
+
+        .theme-btn {
+            font-size: 20px;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: linear-gradient(145deg, #ffffff, #d9d9d9);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.6);
+            transition: 0.3s
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(10deg)
+        }
+
+        .dark .theme-btn {
+            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+            color: white;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6), -5px -5px 10px rgba(80, 80, 80, 0.2)
+        }
+
+        body.dark {
+            background: #121212;
+        }
+
+        body.dark header {
+            background: rgba(35, 35, 35, 0.9)
+        }
+
+        body.dark nav a {
+            color: white
+        }
+
+        body.dark .stats div {
+            background: #1f1f1f;
+            color: white
+        }
+
+        body.dark input {
+            background: #2a2a2a;
+            color: white;
+            border: 1px solid #444
+        }
+
+        body.dark .hero {
+            filter: brightness(0.9)
+        }
+
+        body.dark footer {
+            background: #111
+        }
+
+        body.dark .work-card,
+        body.dark .future-card {
+            background: #1e1e1e;
+            color: #f1f1f1;
+            border: 1px solid rgba(255, 255, 255, 0.08)
+        }
+
+        body.dark .work-card img,
+        body.dark .future-card img {
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px
+        }
+
+        body.dark .work-card p,
+        body.dark .future-card p,
+        body.dark .work-card h3,
+        body.dark .future-card h3 {
+            color: #ffffff
+        }
+
+        body.dark footer {
+            background: #0d0d0d;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1)
+        }
+
+        .footer {
+            background: #111;
+            color: white;
+            padding: 50px 30px 20px;
+            height: 300px;
+            border-top: 1px solid #ddd
+        }
+
+        .footer-left {
+            width: 400px;
+            height: 100px;
+            margin: 0px 0px
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 0px;
+            max-width: 100%;
+            margin: auto;
+            height: 175px;
+            flex-wrap: wrap;
+            padding: 20px 20px
+        }
+
+        .footer h2 {
+            color: white;
+            font-size: 23px;
+            margin: 6px 2px
+        }
+
+        .footer h3 {
+            color: #fff;
+            font-size: 21px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 7px 2px
+        }
+
+        .footer a {
+            color: #444;
+            text-decoration: none;
+            margin: 20px 10px;
+            font-size: 18px;
+            transition: 0.3s
+        }
+
+        .footer a:hover {
+            color: #fff;
+            transform: translateX(5px)
+        }
+
+        .footer p {
+            color: #555;
+            font-size: 15px
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+            color: #666;
+            font-size: 13px
+        }
+
+        body.dark .footer {
+            background: #1e1e1e;
+            color: #fff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1)
+        }
+
+        body.dark .footer h2,
+        body.dark .footer h3 {
+            color: #fff
+        }
+
+        body.dark .footer a {
+            color: #ccc
+        }
+
+        body.dark .footer a:hover {
+            color: #fff
+        }
+
+        body.dark .footer p {
+            color: #ccc
+        }
+
+        body.dark .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #aaa
+        }
+
+        body.dark .footer {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1)
+        }
+        .modal{
+    display:none;  
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal-box{
+    width:90%;
+    max-width:650px;
+    background:rgba(255,255,255,0.95);
+    /* backdrop-filter:blur(15px); */
+    padding:25px;
+    border-radius:18px;
+    position:relative;
+    animation:pop 0.3s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.8); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* ================= HEAD TEXT ================= */
+h2{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.sub{
+    text-align:center;
+    color:#666;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+/* ================= DONATE GRID ================= */
+.payment-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.pay-card{
+    background:#f7f7f7;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    transition:0.3s;
+    border:1px solid #ddd;
+}
+
+.pay-card:hover{
+    transform:translateY(-5px);
+}
+
+.pay-card .icon{
+    font-size:28px;
+}
+
+.pay-card button{
+    margin-top:10px;
+    padding:8px 12px;
+    border:none;
+    background:#0066ff;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* highlighted card */
+.highlight{
+    border:2px solid #0066ff;
+}
+
+/* ================= CARD FORM ================= */
+.card-section{
+    display:none;
+}
+
+.input-box{
+    position:relative;
+    margin-bottom:15px;
+}
+
+.input-box input,
+.input-box select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+}
+
+.input-box label{
+    position:absolute;
+    left:10px;
+    top:12px;
+    color:#777;
+    font-size:13px;
+    transition:0.3s;
+    pointer-events:none;
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label{
+    top:-8px;
+    font-size:11px;
+    color:#0066ff;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+}
+
+button[type="submit"]{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#0066ff;
+    color:white;
+    border-radius:8px;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+.back-btn{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    background:#555;
+}
+
+/* ================= DARK MODE ================= */
+body.dark .modal-box{
+    background:rgba(30,30,30,0.9);
+    color:white;
+}
+
+body.dark .pay-card{
+    background:#1f1f1f;
+    border:1px solid #333;
+}
+
+body.dark .input-box input,
+body.dark .input-box select{
+    background:#2a2a2a;
+    color:white;
+    border:1px solid #444;
+}
+
+body.dark .sub{
+    color:#bbb;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>NayePankh Foundation</h2>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#impact">Impact</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#volunteer">Volunteer</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button id="themeBtn" class="theme-btn">🌗</button>
+    </header>
+    <section class="hero">
+        <h1>Giving Wings To Dreams</h1>
+        <p>We work for education, food, and social welfare</p>
+        <button onclick="document.getElementById('volunteer').scrollIntoView({behavior:'smooth'})">Join Us</button>
+        
+<button id="donateBtn" class="donate-btn">Donate ❤️</button>
+    </section>
+    <section id="about" class="reveal">
+        <div class="card about">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>NayePankh Foundation is a youth-driven NGO committed to transforming lives through education,
+                        food distribution, women empowerment, and social awareness programs.</p>
+                    <p>Our mission is to ensure that every child gets education, every family gets food support, and
+                        every individual gets equal opportunity to grow.</p>
+                    <p>We work across multiple cities with volunteers who dedicate their time for social good.</p>
+                </div>
+                <div class="about-images">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655" alt="">
+                    <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="impact" class="reveal">
+        <div class="card">
+            <h2>Our Impact</h2>
+            <div class="stats">
+                <div>
+                    <h2 class="counter" data-target="10000">0</h2>
+                    <p>Volunteers</p>
+                </div>
+                <div>
+                    <h2 class="counter" data-target="50000">0</h2>
+                    <p>People Helped</p>
+                </div>
+                <div>
+                    <h2 class="counter" data-target="200">0</h2>
+                    <p>Campaigns</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="reveal">
+        <div class="card">
+            <h2>Our Gallery</h2>
+            <div class="gallery">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca" alt="">
+                <img class="gallery-item" src="https://images.unsplash.com/photo-1520975922284-9f13b77b5c4c" alt="">
+            </div>
+        </div>
+    </section>
+    <section id="work" class="reveal">
+        <div class="card">
+            <h2>Our Work & Achievements</h2>
+            <div class="work-grid">
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="">
+                    <h3>Education Drive</h3>
+                    <p>We provided free education materials to underprivileged children.</p>
+                </div>
+                <div class="work-card"><img
+                        src="https://images.unsplash.com/photo-1710092784814-4a6f158913b8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2QlMjBkaXN0cmlidXRpb258ZW58MHx8MHx8fDA%3D"
+                        alt="">
+                    <h3>Food Distribution</h3>
+                    <p>We organized multiple food donation drives in rural areas.</p>
+                </div>
+
+                <div class="work-card">
+                    <img src="data:image/webp;base64,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"
+                        alt="">
+                    <h3>Health Awareness</h3>
+                    <p>We conducted health camps for awareness and basic checkups.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section id="future" class="reveal">
+
+        <div class="card">
+
+            <h2>Our Future Plans</h2>
+
+            <div class="future-grid">
+
+                <div class="future-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="">
+                    <h3>Digital Education Platform</h3>
+                    <p>We plan to launch an online learning platform for rural students.</p>
+                </div>
+
+                <div class="future-card">
+                    <img src="https://th.bing.com/th/id/OIP.HtM6PEy3CecEmhHc3kX0RgHaFc?w=261&h=192&c=7&r=0&o=7&pid=1.7&rm=3"
+                        alt="">
+                    <h3>More Food Centers</h3>
+                    <p>Expanding food distribution centers across multiple states.</p>
+                </div>
+
+                <div class="future-card">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" alt="">
+                    <h3>Volunteer Network</h3>
+                    <p>Building a strong national volunteer network for social impact.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ================= VOLUNTEER ================= -->
+    <section id="volunteer" class="reveal">
+        <div class="card">
+
+            <h2>Become Volunteer</h2>
+
+            <form id="form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Register</button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="reveal">
+        <div class="card">
+            <h2>Contact</h2>
+            <p>Email: contact@nayepankh.org</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
+        </div>
+    </section>
+    <div id="donateModal" class="modal">
+
+    <div class="modal-box">
+
+        <span class="close" id="closeModal">×</span>
+
+        <!-- ================= DONATE MAIN ================= -->
+        <div id="donateMain" class="donate-main">
+
+            <h2>❤️ Support Our Cause</h2>
+            <p class="sub">Your small help creates a big impact</p>
+
+            <div class="payment-grid">
+
+                <div class="pay-card">
+                    <div class="icon">📱</div>
+                    <h3>UPI Payment</h3>
+                    <p>GPay / PhonePe / Paytm</p>
+                    <span>UPI ID: nayepankh@upi</span>
+                </div>
+
+                <div class="pay-card highlight">
+                    <div class="icon">💳</div>
+                    <h3>Card Payment</h3>
+                    <p>Credit / Debit Card</p>
+                    <button id="openCard">Pay by Card</button>
+                </div>
+
+                <div class="pay-card">
+                    <div class="icon">🏦</div>
+                    <h3>Net Banking</h3>
+                    <p>All Indian Banks</p>
+                    <button>Proceed</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= CARD SECTION ================= -->
+        <div id="cardSection" class="card-section">
+
+            <h2>💳 Secure Card Payment</h2>
+            <p class="sub">Enter your card details safely</p>
+
+            <form id="cardForm">
+
+                <div class="input-box">
+                    <input type="text" required maxlength="16">
+                    <label>Card Number</label>
+                </div>
+
+                <div class="row">
+                    <div class="input-box">
+                        <input type="text" required>
+                        <label>Expiry (MM/YY)</label>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" required maxlength="3">
+                        <label>CVV</label>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <select required>
+                        <option value="">Card Type</option>
+                        <option>Credit Card</option>
+                        <option>Debit Card</option>
+                    </select>
+                </div>
+
+                <button type="submit">Pay Securely</button>
+
+                <button type="button" id="backToDonate" class="back-btn">
+                    ← Back
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- ================= FOOTER ================= -->
+    <!-- <footer>
+    © 2026 NayePankh Foundation
+</footer> -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <!-- LEFT -->
+            <div class="footer-left">
+                <h2>NayePankh Foundation</h2>
+                <p>Giving Wings To Dreams</p>
+            </div>
+
+            <!-- MIDDLE -->
+            <div class="footer-middle">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#impact">Impact</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="footer-right">
+
+                <div class="contact">
+                    <h3>Contact</h3>
+                    <p>Email: contact@nayepankh.org</p>
+                    <p>Phone: +91 XXXXX XXXXX</p>
+                </div>
+
+                <div class="social">
+                    <h3>Social</h3>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 NayePankh Foundation
+        </div>
+
+    </footer>
+    <!-- ================= JS ================= -->
+    <script>
+
+        /* DARK MODE */
+        document.getElementById("themeBtn").onclick = () => {
+            document.body.classList.toggle("dark");
+        };
+
+        /* FORM */
+        document.getElementById("form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Thank you for registering!");
+            e.target.reset();
+        });
+
+        /* SCROLL ANIMATION */
+        window.addEventListener("scroll", () => {
+
+            document.querySelectorAll(".reveal").forEach(el => {
+
+                let top = el.getBoundingClientRect().top;
+
+                if (top < window.innerHeight - 100) {
+                    el.classList.add("active");
+                }
+
+            });
+
+        });
+        const links = document.querySelectorAll("nav a");
+
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+
+                links.forEach(l => l.classList.remove("active"));
+
+                link.classList.add("active");
+
+            });
+        });
+        /* COUNTER ANIMATION */
+        let counters = document.querySelectorAll(".counter");
+        document.getElementById("themeBtn").addEventListener("click", () => {
+
+            document.body.classList.toggle("dark");
+
+            // icon change
+            const btn = document.getElementById("themeBtn");
+
+            if (document.body.classList.contains("dark")) {
+                btn.innerText = "☀️";
+            } else {
+                btn.innerText = "🌗";
+            }
+
+        });
+        counters.forEach(counter => {
+
+            let update = () => {
+
+                let target = +counter.getAttribute("data-target");
+                let count = +counter.innerText;
+
+                let step = target / 100;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + step);
+                    setTimeout(update, 20);
+                } else {
+                    counter.innerText = target + "+";
+                }
+
+            }
+
+            update();
+
+        });
+        document.getElementById("themeBtn").addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+        });
+ 
+const openCard = document.getElementById("openCard");
+const backToDonate = document.getElementById("backToDonate");
+const donateMain = document.getElementById("donateMain");
+const cardSection = document.getElementById("cardSection");
+
+openCard.addEventListener("click", () => {
+    donateMain.style.display = "none";
+    cardSection.style.display = "block";
+});
+
+backToDonate.addEventListener("click", () => {
+    donateMain.style.display = "block";
+    cardSection.style.display = "none";
+});
+ // ===== DONATE BUTTON OPEN MODAL =====
+const donateBtn = document.getElementById("donateBtn");
+const modal = document.getElementById("donateModal");
+const closeModal = document.getElementById("closeModal");
+
+donateBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+});
+
+// CLOSE MODAL
+closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// OUTSIDE CLICK CLOSE
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
+ </script>
+
+</body>
+
+</html>
